@@ -27,7 +27,20 @@
       this.elements[0].focus();
     });
   };
-
+  FormHandler.prototype.addvalidHandler = function(fn){
+    console.log('Setting input handler for the form');
+    this.$formElement.on('input', '[name="movie"]', '[name="threads"]' function (event) {
+      var movie = event.target.value;
+      var threads = event.target.value;
+      var message='';
+      if(fn(movie,threads)){
+        event.target.setCustomValidity('');
+      }else{
+        message = movie + threads + ' is not available'
+        event.target.setCustomValidity(message);
+      }
+    });
+  };
 FormHandler.prototype.addInputHandler = function(fn){
   console.log('Setting input handler for the form');
   this.$formElement.on('input', '[name="emailAddress"]', function (event) {

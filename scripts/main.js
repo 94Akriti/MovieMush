@@ -8,6 +8,7 @@
  var DataStore = App.DataStore;
  var FormHandler = App.FormHandler;
  var Validation = App.Validation;
+ var Notavailable = App.Notavailable;
  var CheckList = App.CheckList;
  var mymovie = new portal('701', new DataStore());
  window.mymovie = mymovie;
@@ -21,4 +22,5 @@
  checkList.addRow.call(checkList, data);
  });
   formHandler.addInputHandler(Validation.isPrimemember);
+  formhandler.addvalidHandler(Notavailable.isNotavailable);
 })(window);
