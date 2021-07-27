@@ -28,6 +28,20 @@
     });
   };
 
+FormHandler.prototype.addInputHandler = function(fn){
+  console.log('Setting input handler for the form');
+  this.$formElement.on('input', '[name="emailAddress"]', function (event) {
+    var emailAddress = event.target.value;
+    var message='';
+    if(fn(emailAddress)){
+      event.target.setCustomValidity('');
+    }else{
+      message = emailAddress + ' is not a Prime member email address!'
+      event.target.setCustomValidity(message);
+    }
+  });
+};
+
   App.FormHandler = FormHandler;
   window.App = App;
 })(window);
