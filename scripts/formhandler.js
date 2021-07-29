@@ -27,16 +27,25 @@
       this.elements[0].focus();
     });
   };
-  FormHandler.prototype.addvalidHandler = function(fn){
+  FormHandler.prototype.addvalidHandler = function(fn1,fn2){
     console.log('Setting input handler for the form');
-    this.$formElement.on('input', '[name="movie"]', '[name="threads"]' function (event) {
+    this.$formElement.on('input', '[name="movie"]', function (event) {
       var movie = event.target.value;
-      var threads = event.target.value;
       var message='';
-      if(fn(movie,threads)){
+      if(fn1(movie)){
         event.target.setCustomValidity('');
       }else{
-        message = movie + threads + ' is not available'
+        message = movie + ' is not available'
+        event.target.setCustomValidity(message);
+      }
+    });
+    this.$sliderThreads.on('change', function(event){
+      var threads = event.target.value;
+      var message='';
+      if(fn2(threads)){
+        event.target.setCustomValidity('');
+      }else{
+        message = threads + ' is not available'
         event.target.setCustomValidity(message);
       }
     });
